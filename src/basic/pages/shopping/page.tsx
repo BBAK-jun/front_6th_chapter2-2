@@ -91,29 +91,6 @@ const ShoppingPage = () => {
     };
   };
 
-  const [totalItemCount, setTotalItemCount] = useState(0);
-
-  useEffect(() => {
-    const count = cartStore.cart.reduce((sum, item) => sum + item.quantity, 0);
-    setTotalItemCount(count);
-  }, [cartStore.cart]);
-
-  useEffect(() => {
-    localStorage.setItem('products', JSON.stringify(productStore.products));
-  }, [productStore.products]);
-
-  useEffect(() => {
-    localStorage.setItem('coupons', JSON.stringify(couponStore.coupons));
-  }, [couponStore.coupons]);
-
-  useEffect(() => {
-    if (cartStore.cart.length > 0) {
-      localStorage.setItem('cart', JSON.stringify(cartStore.cart));
-    } else {
-      localStorage.removeItem('cart');
-    }
-  }, [cartStore.cart]);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
@@ -401,7 +378,7 @@ const ShoppingPage = () => {
                   </svg>
                   {cartStore.cart.length > 0 && (
                     <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                      {totalItemCount}
+                      {cartStore.totalItemCount}
                     </span>
                   )}
                 </div>

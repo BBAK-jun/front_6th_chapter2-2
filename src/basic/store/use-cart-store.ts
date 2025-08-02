@@ -6,6 +6,7 @@ const cartStorage = createStorage<CartItem[]>({ key: 'cart' });
 
 export const useCartStore = () => {
   const cart = useLocalStorage(cartStorage) ?? [];
+  const totalItemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   const appendCart = (cart: CartItem[]) => {
     cartStorage.set([...(cartStorage.get() ?? []), ...cart]);
@@ -25,5 +26,13 @@ export const useCartStore = () => {
     }
   };
 
-  return { cart, setCart, appendCart, removeByProductId };
+  return {
+    cart,
+    setCart,
+    appendCart,
+    removeByProductId,
+
+    // computed-properties
+    totalItemCount,
+  };
 };
