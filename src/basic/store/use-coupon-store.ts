@@ -23,17 +23,22 @@ const couponStorage = createStorage<Coupon[]>({
 export const useCouponStore = () => {
   const coupons = useLocalStorage(couponStorage) ?? [];
 
-  const append = (coupon: Coupon) => {
+  const addCoupon = (coupon: Coupon) => {
     couponStorage.set([...(couponStorage.get() ?? []), coupon]);
   };
 
-  const removeByCouponCode = (code: string) => {
+  const removeCouponByCode = (code: string) => {
     couponStorage.set(couponStorage.get()?.filter(c => c.code !== code) ?? []);
   };
 
-  const isExistCoupon = (code: string) => {
+  const hasCouponWithCode = (code: string) => {
     return coupons.some(coupon => coupon.code === code);
   };
 
-  return { coupons, append, removeByCouponCode, isExistCoupon };
+  return {
+    coupons,
+    addCoupon,
+    removeCouponByCode,
+    hasCouponWithCode,
+  };
 };

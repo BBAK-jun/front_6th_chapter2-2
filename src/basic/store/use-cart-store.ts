@@ -8,11 +8,11 @@ export const useCartStore = () => {
   const cart = useLocalStorage(cartStorage) ?? [];
   const totalItemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-  const appendCart = (cart: CartItem[]) => {
-    cartStorage.set([...(cartStorage.get() ?? []), ...cart]);
+  const addCartItems = (cartItems: CartItem[]) => {
+    cartStorage.set([...(cartStorage.get() ?? []), ...cartItems]);
   };
 
-  const removeByProductId = (productId: string) => {
+  const removeCartItemByProductId = (productId: string) => {
     cartStorage.set(
       cartStorage.get()?.filter(item => item.product.id !== productId) ?? []
     );
@@ -26,11 +26,11 @@ export const useCartStore = () => {
     }
   };
 
-  const reset = () => {
+  const clearCart = () => {
     cartStorage.set([]);
   };
 
-  const findByProductId = (productId: string) => {
+  const findCartItemByProductId = (productId: string) => {
     return cart.find(item => item.product.id === productId);
   };
 
@@ -38,13 +38,13 @@ export const useCartStore = () => {
     cart,
     setCart,
 
-    // actions
-    reset,
-    appendCart,
-    removeByProductId,
-    findByProductId,
+    // Actions
+    clearCart,
+    addCartItems,
+    removeCartItemByProductId,
+    findCartItemByProductId,
 
-    // computed-properties
+    // Computed properties
     totalItemCount,
   };
 };

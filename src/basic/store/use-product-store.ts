@@ -42,13 +42,17 @@ const productStorage = createStorage<ProductView[]>({
 });
 
 export const useProductStore = () => {
-  const products = useLocalStorage(productStorage);
+  const products = useLocalStorage(productStorage) ?? [];
 
-  const append = (product: ProductView) => {
+  const addProduct = (product: ProductView) => {
     productStorage.set([...(productStorage.get() ?? []), product]);
   };
 
-  const update = (id: string, updates: Partial<ProductView>) => {
+  const findProductById = (id: string) => {
+    return products.find(p => p.id === id);
+  };
+
+  const updateProduct = (id: string, updates: Partial<ProductView>) => {
     productStorage.set(
       productStorage
         .get()
@@ -56,9 +60,15 @@ export const useProductStore = () => {
     );
   };
 
-  const removeByProductId = (id: string) => {
+  const removeProductById = (id: string) => {
     productStorage.set(productStorage.get()?.filter(p => p.id !== id) ?? []);
   };
 
-  return { products: products ?? [], append, update, removeByProductId };
+  return {
+    products: products ?? [],
+    addProduct,
+    updateProduct,
+    findProductById,
+    removeProductById,
+  };
 };
