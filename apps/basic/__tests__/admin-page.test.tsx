@@ -8,7 +8,7 @@ import {
   within,
 } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-import '../../setupTests';
+
 
 describe('쇼핑몰 앱 통합 테스트 - 쇼핑 페이지', () => {
   beforeEach(() => {
