@@ -6,11 +6,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/index.basic.html',
     Component: ShoppingPage,
   },
   {
-    path: '/admin',
+    path: '/index.basic.html/admin',
     Component: AdminPage,
   },
 ]);
