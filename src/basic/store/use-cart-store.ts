@@ -26,11 +26,23 @@ export const useCartStore = () => {
     }
   };
 
+  const reset = () => {
+    cartStorage.set([]);
+  };
+
+  const findByProductId = (productId: string) => {
+    return cart.find(item => item.product.id === productId);
+  };
+
   return {
     cart,
     setCart,
+
+    // actions
+    reset,
     appendCart,
     removeByProductId,
+    findByProductId,
 
     // computed-properties
     totalItemCount,
