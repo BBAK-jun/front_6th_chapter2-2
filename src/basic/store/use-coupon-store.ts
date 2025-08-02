@@ -1,5 +1,5 @@
-import { useLocalStorage } from '@/basic/hooks';
 import { Coupon } from '@/basic/models/coupon';
+import { useLocalStorage } from '@/basic/shared/hooks';
 import { createStorage } from '@/basic/utils';
 
 const couponStorage = createStorage<Coupon[]>({

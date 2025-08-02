@@ -1,5 +1,5 @@
-import { useLocalStorage } from '@/basic/hooks';
 import { ProductView } from '@/basic/models/product';
+import { useLocalStorage } from '@/basic/shared/hooks';
 import { createStorage } from '@/basic/utils';
 
 const productStorage = createStorage<ProductView[]>({

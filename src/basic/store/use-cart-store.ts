@@ -1,5 +1,5 @@
-import { useLocalStorage } from '@/basic/hooks';
 import { CartItem } from '@/basic/models/cart';
+import { useLocalStorage } from '@/basic/shared/hooks';
 import { createStorage } from '@/basic/utils';
 
 const cartStorage = createStorage<CartItem[]>({ key: 'cart' });
