@@ -4,16 +4,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      Component: ShoppingPage,
+    },
+    {
+      path: '/admin',
+      Component: AdminPage,
+    },
+  ],
   {
-    path: '/index.basic.html',
-    Component: ShoppingPage,
-  },
-  {
-    path: '/index.basic.html/admin',
-    Component: AdminPage,
-  },
-]);
+    basename: '/index.basic.html',
+  }
+);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
